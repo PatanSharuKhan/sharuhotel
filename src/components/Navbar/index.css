@@ -1,0 +1,71 @@
+.navbar_inner-box {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .navbar_inner-box {
+    width: 80%;
+    margin: auto;
+  }
+}
+.navbar_logo {
+  margin-right: 10px;
+}
+.navbar_title {
+  font-size: 25px;
+  color: orange;
+}
+.navbar_hamburger-btn {
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer;
+}
+.navbar_hamburger-icon {
+  font-size: 25px;
+}
+@media screen and (min-width: 768px) {
+  .navbar_hamburger-btn {
+    display: none;
+  }
+}
+
+.navbar_links-box {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .navbar_links-box {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.navbar_links-box li {
+  list-style-type: none;
+  margin-left: 30px;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+.navbar_home-orange a {
+  color: orange;
+}
+.navbar_logout-btn {
+  height: 30px;
+  background-color: orange;
+  color: white;
+  border-radius: 5px;
+  border: 0px;
+  cursor: pointer;
+}
+.d-flex-logo {
+  display: flex;
+  align-items: center;
+}

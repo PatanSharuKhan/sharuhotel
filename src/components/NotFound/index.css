@@ -1,0 +1,28 @@
+.not-found-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.not-found-img {
+  width: 180px;
+}
+.sorry-msg {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.go-back-msg {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.home-page-btn {
+  height: 36px;
+  border: 0px;
+  border-radius: 5px;
+  color: white;
+  background-color: #f7931e;
+  cursor: pointer;
+}

@@ -1,0 +1,14 @@
+.counter_box {
+  display: flex;
+  align-items: center;
+}
+.counter_box button {
+  background-color: transparent;
+  border: 1px solid grey;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.counter_count {
+  margin-left: 10px;
+  margin-right: 10px;
+}
