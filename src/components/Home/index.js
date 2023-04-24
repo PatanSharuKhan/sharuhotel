@@ -64,7 +64,10 @@ class Home extends Component {
   }
 
   updateSortOption = option => {
-    this.setState({sortOption: option}, this.fetchRestaurants)
+    this.setState(
+      {sortOption: option, offset: 0, LIMIT: 9},
+      this.fetchRestaurants,
+    )
   }
 
   DecreaseByOnePage = () => {
@@ -209,7 +212,12 @@ class Home extends Component {
   )
 
   render() {
-    const {isLoadingBuffer, isLoadingContent, isNavHided} = this.state
+    const {
+      isLoadingBuffer,
+      isLoadingContent,
+      isNavHided,
+      sortOption,
+    } = this.state
     return (
       <div className="home-container">
         <div className="navbar_outer-box">
@@ -228,7 +236,10 @@ class Home extends Component {
         </ul>
 
         <div className="restaurant-header">
-          <RestaurantHeader updateSortOption={this.updateSortOption} />
+          <RestaurantHeader
+            updateSortOption={this.updateSortOption}
+            activeSort={sortOption}
+          />
         </div>
 
         <hr />

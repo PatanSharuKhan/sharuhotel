@@ -15,7 +15,7 @@ const sortByOptions = [
 ]
 
 const RestaurantHeader = props => {
-  const {updateSortOption} = props
+  const {updateSortOption, activeSort} = props
   const changeSort = event => {
     updateSortOption(event.target.value)
   }
@@ -33,11 +33,18 @@ const RestaurantHeader = props => {
 
         <p>Sort By</p>
         <select className="select-sort" id="select" onChange={changeSort}>
-          {sortByOptions.map(each => (
-            <option key={each.id} value={each.value}>
-              {each.displayText}
-            </option>
-          ))}
+          {sortByOptions.map(each => {
+            const code = (
+              <option
+                key={each.id}
+                value={each.value}
+                selected={activeSort === each.value ? 'selected' : ''}
+              >
+                {each.displayText}
+              </option>
+            )
+            return code
+          })}
         </select>
       </div>
     </>
