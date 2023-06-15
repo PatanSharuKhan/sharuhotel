@@ -109,3 +109,7 @@
     display: block;
   }
 }
+
+.wait {
+  cursor: wait;
+}

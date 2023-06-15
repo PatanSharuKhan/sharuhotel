@@ -1,17 +1,15 @@
+/* eslint-disable react/no-unknown-property */
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
-import {AiFillCloseCircle} from 'react-icons/ai'
 import Cookies from 'js-cookie'
-import Navbar from '../Navbar'
-import Banner from '../Banner'
-import FoodCard from '../FoodCard'
-import Buffer from '../Buffer'
-import Footer from '../Footer'
+import Navbar from '../../components/Navbar'
+import Banner from '../../components/Banner'
+import FoodCard from '../../components/FoodCard'
+import Buffer from '../../components/Buffer'
+import Footer from '../../components/Footer'
 import './index.css'
 
 class DetailedRestaurant extends Component {
   state = {
-    isNavHided: true,
     foodItems: [],
     restaurantDetails: [],
     isLoading: false,
@@ -46,10 +44,14 @@ class DetailedRestaurant extends Component {
     const {foodItems} = this.state
     const modList = foodItems.map(each => {
       if (each.id === id) {
-        //   if the local storage is empty, then create and store data.
-        const carts = JSON.parse(localStorage.getItem('cartData'))
-        // console.log(carts)
-        if (carts === null) {
+        let carts
+        const isCartDataEmpty = () => {
+          carts = JSON.parse(localStorage.getItem('cartData'))
+          if (carts === null) return true
+          return false
+        }
+
+        if (isCartDataEmpty()) {
           localStorage.setItem(
             'cartData',
             JSON.stringify([{...each, quantity: 1}]),
@@ -60,7 +62,6 @@ class DetailedRestaurant extends Component {
             JSON.stringify([...carts, {...each, quantity: 1}]),
           )
         }
-        // console.log({...each, quantity: 1})
         return {...each, quantity: 1}
       }
       return each
@@ -117,46 +118,7 @@ class DetailedRestaurant extends Component {
     this.setState({foodItems: modFoodItems})
   }
 
-  removePermission = () => {
-    Cookies.remove('jwt_token')
-    const {history} = this.props
-    history.replace('/')
-  }
-
-  updateMenu = () => {
-    this.setState(prev => ({
-      isNavHided: !prev.isNavHided,
-    }))
-  }
-
-  renderHideMenu = () => (
-    <ul className="navbar_links-box nlb">
-      <li className="navbar_home-orange">
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/cart">Cart</Link>
-      </li>
-      <li>
-        <button
-          type="button"
-          className="navbar_logout-btn"
-          onClick={this.removePermission}
-        >
-          Logout
-        </button>
-      </li>
-      <li>
-        <button
-          onClick={this.updateMenu}
-          type="button"
-          className="navbar_close-btn"
-        >
-          <AiFillCloseCircle />
-        </button>
-      </li>
-    </ul>
-  )
+  // --------sub blocks-------------------------------------------
 
   renderFoodList = () => {
     const {foodItems} = this.state
@@ -171,35 +133,44 @@ class DetailedRestaurant extends Component {
     ))
   }
 
-  render() {
-    const {isNavHided, restaurantDetails, isLoading} = this.state
-    return (
-      <div className="detailed-restaurant-box">
-        <div className="navbar_outer-box">
-          <Navbar
-            removePermission={this.removePermission}
-            updateMenu={this.updateMenu}
-          />
-        </div>
-        {/* navbar is hided and when clicked on hamburger then navbar will be shown */}
-        {isNavHided ? null : (
-          <div className="navbar_hide-menu">{this.renderHideMenu()}</div>
-        )}
+  renderBuffer = () => <Buffer testid="restaurant-details-loader" />
 
-        {isLoading ? (
-          <Buffer testid="restaurant-details-loader" />
-        ) : (
-          <>
-            <div className="detailed_banner-outer-box">
-              <Banner bannerDetails={restaurantDetails} />
-            </div>
-            <ul className="detailed_food-list">{this.renderFoodList()}</ul>
-          </>
-        )}
-        <div className="footer-box">
-          <Footer />
-        </div>
+  renderBanner = restaurantDetails => (
+    <Banner bannerDetails={restaurantDetails} />
+  )
+
+  // --------main blocks-------------------------------------------
+
+  renderBannerBlock = () => {
+    const {restaurantDetails, isLoading} = this.state
+
+    const code = isLoading
+      ? this.renderBuffer()
+      : this.renderBanner(restaurantDetails)
+    return code
+  }
+
+  renderFoodItemsBlock = () => {
+    const {isLoading} = this.state
+    return isLoading ? (
+      <Buffer />
+    ) : (
+      <div className="container mt-3">
+        <h1>Dishes Available</h1>
+        <hr />
+        <ul className="row ps-0">{this.renderFoodList()}</ul>
       </div>
+    )
+  }
+
+  render() {
+    return (
+      <>
+        <Navbar />
+        {this.renderBannerBlock()}
+        {this.renderFoodItemsBlock()}
+        <Footer />
+      </>
     )
   }
 }

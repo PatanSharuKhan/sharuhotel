@@ -4,7 +4,7 @@ import {AiOutlineStar} from 'react-icons/ai'
 const Banner = props => {
   const {bannerDetails} = props
   return (
-    <div className="banner_box">
+    <div className="banner-box">
       <img
         src={bannerDetails.image_url}
         alt={bannerDetails.name}

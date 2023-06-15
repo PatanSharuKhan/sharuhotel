@@ -44,7 +44,6 @@ class Login extends Component {
     if (response.ok) {
       const data = await response.json()
       const jwtToken = data.jwt_token
-      console.log(jwtToken)
       Cookies.set('jwt_token', jwtToken, {expires: 5})
       const {history} = this.props
       history.replace('/')
@@ -55,6 +54,8 @@ class Login extends Component {
       })
     }
   }
+
+  //   -----------[ sub blocks ]--------------
 
   renderImage = () => (
     <img

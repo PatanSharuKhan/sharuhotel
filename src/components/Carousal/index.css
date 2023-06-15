@@ -1,0 +1,13 @@
+.slick-dots {
+  position: relative;
+  top: -40px;
+}
+.slick-dots button::before {
+  color: white !important;
+}
+.slick-slide {
+  min-height: 250px;
+}
+.slick-slide img {
+  min-height: 250px;
+}

@@ -5,48 +5,92 @@ import {AiFillStar} from 'react-icons/ai'
 import Counter from '../Counter'
 
 class FoodCard extends Component {
-  render() {
-    const {each, addItem, decreaseItem, increaseItem} = this.props
-    const addToCart = () => {
-      addItem(each.id)
-    }
-    const onRemoveItem = () => {
-      decreaseItem(each.id)
-    }
-    const onIncreaseItem = () => {
-      increaseItem(each.id)
-    }
+  state = {}
+
+  addToCart = () => {
+    const {each, addItem} = this.props
+    addItem(each.id)
+  }
+
+  onRemoveItem = () => {
+    const {each, decreaseItem} = this.props
+    decreaseItem(each.id)
+  }
+
+  onIncreaseItem = () => {
+    const {each, increaseItem} = this.props
+    increaseItem(each.id)
+  }
+
+  // --------[ sub blocks ]--------------------------------------
+
+  renderAddButton = () => (
+    <button
+      type="button"
+      className="badge bg-warning border w-60px text-light"
+      onClick={this.addToCart}
+    >
+      ADD
+    </button>
+  )
+
+  renderCounter = () => {
+    const {each} = this.props
     return (
-      <li className="food_card-box" testid="foodItem">
-        <img
-          src={each.image_url}
-          alt="restaurant"
-          className="food_card-image"
-        />
-        <div className="food_card-data">
-          <p className="food_card-title">{each.name}</p>
-          <p>Rs.{each.cost}</p>
-          <p className="food_card-rating">
-            <AiFillStar fill="gold" />
-            {each.rating}
-          </p>
-          {/* if the quantity in cart is zero then (add-button) will be displayed else (counter) */}
-          {each.quantity > 0 ? (
-            <Counter
-              quantity={each.quantity}
-              onRemoveItem={onRemoveItem}
-              onIncreaseItem={onIncreaseItem}
-            />
-          ) : (
-            <button
-              type="button"
-              className="food_card-add-btn"
-              onClick={addToCart}
-            >
-              ADD
-            </button>
-          )}
-        </div>
+      <Counter
+        quantity={each.quantity}
+        onRemoveItem={this.onRemoveItem}
+        onIncreaseItem={this.onIncreaseItem}
+      />
+    )
+  }
+
+  renderCounterBlock = () => {
+    const {each} = this.props
+    if (each.quantity > 0) {
+      return this.renderCounter()
+    }
+    return this.renderAddButton()
+  }
+
+  renderNameRatingBlock = () => {
+    const {each} = this.props
+    return (
+      <>
+        <p className="food_card-title mb-0">{each.name}</p>
+        <p className="mb-0">Rs.{each.cost}</p>
+        <p className="food_card-rating">
+          <AiFillStar fill="gold" />
+          {each.rating}
+        </p>
+      </>
+    )
+  }
+
+  // --------main blocks--------------------------------------
+
+  renderFoodImage = () => {
+    const {each} = this.props
+    return (
+      <img src={each.image_url} alt="restaurant" className="food-card-image" />
+    )
+  }
+
+  renderFoodDesc = () => (
+    <div className="d-flex flex-column justify-content-center ms-2 food-desc flex-grow-1">
+      {this.renderNameRatingBlock()}
+      {this.renderCounterBlock()}
+    </div>
+  )
+
+  render() {
+    return (
+      <li
+        className="food-card col-12 col-md-6 col-lg-4 list-unstyled d-flex mb-3"
+        testid="foodItem"
+      >
+        {this.renderFoodImage()}
+        {this.renderFoodDesc()}
       </li>
     )
   }

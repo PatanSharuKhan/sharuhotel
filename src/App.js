@@ -1,11 +1,12 @@
 import {Switch, Route, Redirect} from 'react-router-dom'
 import {Component} from 'react'
-import Home from './components/Home'
-import Login from './components/Login'
-import NotFound from './components/NotFound'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
-import DetailedRestaurant from './components/DetailedRestaurant'
-import Cart from './components/Cart'
+import DetailedRestaurant from './pages/DetailedRestaurant'
+import Register from './pages/Register'
+import Cart from './pages/Cart'
 import './App.css'
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
           component={DetailedRestaurant}
         />
         <ProtectedRoute exact path="/cart" component={Cart} />
+        <ProtectedRoute exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/not-found" component={NotFound} />
         <Redirect to="/not-found" />

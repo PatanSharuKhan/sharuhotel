@@ -23,8 +23,9 @@ class Counter extends Component {
             type="button"
             onClick={this.onDecrement}
             testid="decrement-quantity"
+            className="badge text-dark"
           >
-            -
+            &#8722;
           </button>
         </span>
         <span testid="active-count">
@@ -37,6 +38,7 @@ class Counter extends Component {
             type="button"
             onClick={this.onIncrement}
             testid="increment-quantity"
+            className="badge text-dark"
           >
             +
           </button>

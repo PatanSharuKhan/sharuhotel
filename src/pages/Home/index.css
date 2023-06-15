@@ -1,0 +1,25 @@
+.restaurant-thumbnail {
+  width: 150px;
+  height: 100px;
+  border-radius: 8px;
+}
+.restaurant-data {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.restaurant_card-title {
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.restaurant_card-rate {
+  font-weight: bold;
+}
+
+/* pagination styles */
+
+.c-pointer {
+  cursor: pointer;
+}

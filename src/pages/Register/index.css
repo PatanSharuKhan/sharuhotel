@@ -1,0 +1,23 @@
+.register-box {
+  width: 100%;
+}
+
+.register-form {
+  width: 100%;
+  padding: 10px;
+}
+
+.register-form input {
+  height: 40px;
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.register-title {
+  font-family: monospace;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}

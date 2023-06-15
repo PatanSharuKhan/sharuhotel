@@ -1,39 +1,24 @@
-.food_card-box {
-  width: 100%;
-  min-width: 350px;
-  list-style-type: none;
-  margin-bottom: 20px;
-  padding: 20px;
-  display: flex;
-}
-@media screen and (min-width: 768px) {
-  .food_card-box {
-    width: 45%;
-  }
-}
-.food_card-image {
-  width: 200px;
+.food-card-image {
+  width: 150px;
   height: 120px;
   border-radius: 8px;
 }
-.food_card-data {
-  padding: 10px;
+.food-desc {
+  white-space: nowrap;
+  overflow: hidden;
 }
 .food_card-title {
-  margin-bottom: 5px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .food_card-rating {
   margin-bottom: 6px;
   margin-top: 5px;
   font-weight: bold;
 }
-.food_card-add-btn {
-  height: 25px;
+
+.w-60px {
   width: 60px;
-  background-color: transparent;
-  color: orange;
-  border: 2px solid orange;
-  border-radius: 5px;
-  cursor: pointer;
 }

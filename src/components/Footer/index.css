@@ -1,0 +1,9 @@
+#footerBox {
+  padding: 10%;
+}
+
+.footer-social-icons li {
+  list-style-type: none;
+  font-size: 40px;
+  margin-right: 20px;
+}
